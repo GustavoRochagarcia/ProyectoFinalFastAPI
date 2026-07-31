@@ -12,6 +12,10 @@ def get_by_email(db: Session, email: str) -> User | None:
     return db.query(User).filter(User.email == email).first()
 
 
+def get_by_given_name(db: Session, given_name: str) -> list[User]:
+    return db.query(User).filter(User.given_name.ilike(f"%{given_name}%")).order_by(User.id).all()
+
+
 def get_all(db: Session) -> list[User]:
     return db.query(User).order_by(User.id).all()
 

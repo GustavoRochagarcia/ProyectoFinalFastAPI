@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
@@ -16,6 +16,11 @@ def create_user(data: UserCreate, db: Session = Depends(get_db)) -> UserOut:
 @router.get("", response_model=list[UserOut])
 def list_users(db: Session = Depends(get_db)) -> list[UserOut]:
     return user_service.list_users(db)
+
+
+@router.get("/search", response_model=list[UserOut])
+def search_users(given_name: str = Query(min_length=1), db: Session = Depends(get_db)) -> list[UserOut]:
+    return user_service.search_users(db, given_name)
 
 
 @router.get("/{user_id}", response_model=UserOut)

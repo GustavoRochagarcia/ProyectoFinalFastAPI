@@ -16,6 +16,10 @@ def list_users(db: Session) -> list[User]:
     return user_repository.get_all(db)
 
 
+def search_users(db: Session, given_name: str) -> list[User]:
+    return user_repository.get_by_given_name(db, given_name)
+
+
 def get_user(db: Session, user_id: int) -> User:
     user = user_repository.get_by_id(db, user_id)
     if not user:
