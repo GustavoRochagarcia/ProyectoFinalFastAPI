@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from app.config import settings
 from app.database.database import Base, engine
 from app.database import models
-from app.routes import posts, users, comments
+from app.routes import comments, posts, users
 
 
 @asynccontextmanager

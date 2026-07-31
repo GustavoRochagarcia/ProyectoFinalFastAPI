@@ -14,9 +14,9 @@ class CommentCreate(CommentBase):
 
 
 class CommentUpdate(BaseModel):
-    title: str | None = Field(default=None, min_length=1, max_length=255)
     content: str | None = Field(default=None, min_length=1)
     user_id: int | None = None
+    post_id: int | None = None
 
 
 class CommentOut(CommentBase):
